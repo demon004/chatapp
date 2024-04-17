@@ -1,26 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat</title>
-    <script defer src="http://localhost:8000/socket.io/socket.io.js"></script>
-    <script defer src="client.js"></script>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat App</title>
+<script src="client.js" defer></script>
 </head>
 <body>
-    <nav>
-        <img src="logo.png" alt="" class="logo">
-    </nav>
-    <div class="container">
-        
+    <div id="username-container">
+        <label for="username">Enter Your Name:</label>
+        <input type="text" id="username" placeholder="Your Name">
+        <button id="submit-username">Submit</button>
     </div>
-    <div class="send">
-        <form action="#" id="send-container">
-            <input type="text" id="msginput">
-            <button class="btn" type="submit">Send</button>
-        </form>
-        
-    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const submitButton = document.getElementById('submit-username');
+
+            submitButton.addEventListener('click', () => {
+                const username = document.getElementById('username').value;
+                if(username.trim() !== '') {
+                    localStorage.setItem('username', username); // Store username in localStorage for later use
+                    window.location.href = 'chat.html'; // Redirect to chat.html
+                } else {
+                    alert('Please enter your name.'); // Display an alert if the username field is empty
+                }
+            });
+        });
+    </script>
 </body>
 </html>
