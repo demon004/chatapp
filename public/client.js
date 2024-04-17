@@ -35,9 +35,16 @@ form.addEventListener('submit', (e) => {
 });
 
 // Prompting the user to enter their name to join the chat
-const username = prompt("Enter your name to join");
-// Emitting the 'new-user-joined' event to the server with the username
-socket.emit('new-user-joined', username);
+// Getting references to DOM elements
+const usernameInput = document.getElementById('username');
+const submitButton = document.getElementById('submit-username');
+
+// Event listener for form submission
+submitButton.addEventListener('click', () => {
+    const username = usernameInput.value;
+    // Emitting the 'new-user-joined' event to the server with the username
+    socket.emit('new-user-joined', username);
+});
 
 // Event listener for when a new user joins the chat
 socket.on('user-joined', name => {
